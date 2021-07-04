@@ -1,0 +1,25 @@
+
+.col-3 img {
+    width: 70px;
+    height: 70px;
+}
+
+.col h1 {
+    font-size: 30px;
+    font-family: sans-serif;
+    margin-top: 10px;
+   
+}.col-3 button{
+    font-size: 10px;
+}
+
+
+
+.footer {
+    
+    display: flex;
+    justify-content: space-around;
+    margin-top: 80px;
+    
+}
+   

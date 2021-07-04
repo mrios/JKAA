@@ -1,0 +1,17 @@
+{% extends "web/layout.html" %}
+
+{% block main %}
+
+<ul>
+  {% for producto in productos %}
+    <li>
+      {{ producto.nombre}} 
+      {{producto.color}} 
+     
+      <a href="detalle_producto/{{producto.id}}"> <img src="{{ media_url  }}{{producto.imagen.url}}" alt=""></a>
+      <a href="detalle_producto/{{producto.id}}">Detalle</a>
+  {% endfor %}
+    </li>
+</ul>
+
+{% endblock %}

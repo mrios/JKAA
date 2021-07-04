@@ -1,0 +1,22 @@
+{% extends "web/layout.html" %}
+
+{% block main %}
+
+<div>
+    {{producto.nombre}}
+</div>
+
+<div>
+    {{producto.color}}
+</div>
+
+<div>
+    <img src="{{ media_url  }}{{producto.imagen.url}}" alt="">
+</div>
+
+<div>
+    {{producto.precio}}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "web/layout.html" %}
+
+{% block main %}
+
+<form method="POST">
+
+    {{agregar_prod}}
+    <button type="submit">Agregar</button>
+    {% csrf_token %}
+</form>
+
+{% endblock %}

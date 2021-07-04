@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador</title>
+</head>
+<body>
+    <p>Resultado de la busqueda: {{query}}</p>
+    {% if articulo %}
+        <p>Productos encontrados: {{articulo|length}} productos </p>
+
+        <ul>
+            {% for art in articulo %}
+                <li>
+                    
+                    {{art.nombre}} &nbsp; {{art.color}} &nbsp; {{art.precio}} &nbsp; <img src="{{ media_url  }}{{ art.imagen.url }}">
+            {% endfor %}
+        </ul>
+    {% else %} 
+        <p>No se encontro ningun producto</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,10 @@
+
+{% load static %}
+
+    {% block busqueda %}
+    <form class="d-flex" action="/buscar/" method="GET">
+        <input class="form-control me-2" type="text" name="producto_buscado" placeholder="Buscar" aria-label="Search">
+        <input class="btn btn-outline-success" type="submit" value="Buscar">
+    </form>
+    {% endblock %}
+
