@@ -1,0 +1,43 @@
+{% extends "JAGUARETEAPP/templates/web/layout.html" %}
+
+{% block main %}
+
+<div class="text-center mt-5">
+    <div class="container-sm col-4">
+  
+    <h3 class="card-header">Acceder a la Web</h3>
+  
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+  
+      <div class="row mt-5">
+        <div class="col-auto ms-5 ">
+          <label for="username">Usuario: </label>
+        </div>
+        <div class="col-auto ms-5">
+          {{ form.username }}
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-auto ms-5 ">
+          <label for="password">Contraseña: </label>
+        </div>
+        <div class="col-auto ms-4">
+          {{ form.password }}
+        </div>        
+      </div>
+       
+      <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-auto me-1">
+          <input type="submit" class="btn btn-success px-5  " value="LOGIN" />
+          <input type="hidden" name="next" value="{{ next }}" /> 
+        </div>
+        <div class="col-auto">
+          <a class="btn btn-success mb-5 px-3" href="{% url 'REGISTRO:registro' %}">REGISTRARSE</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

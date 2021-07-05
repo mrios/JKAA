@@ -18,7 +18,7 @@ def buscar(request):
     
     if request.GET["producto_buscado"]:
         producto=request.GET["producto_buscado"] 
-        articulo=Producto.objects.filter(marca__icontains=producto)
+        articulo=Producto.objects.filter(nombre__icontains=producto)
         return render(request, 'web/resultado_busqueda.html', {"articulo":articulo, "query":producto})
     else:
         mensaje= "No hay busquedas existentes"
@@ -42,5 +42,31 @@ def agregarProducto(request):
     else:
         producto_form = ProductoForm()
     return render(request, "web/agregar_producto.html", {"agregar_prod": producto_form })
+
+
+
+def editar_producto(request, producto_id):
+    producto_editado = get_object_or_404(Producto, id=producto_id)
+    if request.method == "POST":
+        
+        
+        form = ProductoForm(data=request.POST, files=request.FILES, instance=producto_editado)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    else:
+        form = ProductoForm(instance = producto_editado)
+        
+        context = {
+           
+            "producto": producto_editado,
+            "form": form
+        }
+        return render(request, 'web/producto_editado.html', context)
+
+def producto_borrado(request, producto_id):
+    borrado = get_object_or_404(Producto, id=producto_id)
+    borrado.delete()
+    return redirect("home")
 
 

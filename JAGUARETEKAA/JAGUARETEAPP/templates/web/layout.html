@@ -27,8 +27,11 @@
                 </div>
                 <div id="registro"class="col-3" >
                     <div   role="group" aria-label="Basic outlined example">
-                        <button type="button" class="btn btn-outline-primary">Login</button>
-                        <button type="button" class="btn btn-outline-primary">Registro</button>
+                        
+                        <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary">Login</button></a>
+                        <a href="{% url 'REGISTRO:registro' %}">reg</a>
+                        <button type="button" class="btn btn-outline-primary" >Registro</button>
+                        
                         <button type="button" class="btn btn-outline-primary">Carrito</button>
                     </div>
                 </div>
