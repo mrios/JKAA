@@ -1,22 +1,25 @@
-{% extends "web/layout.html" %}
-
+{% extends "web/layout.html" %} 
 {% block main %}
 
-<div>
-    {{producto.nombre}}
-</div>
+<div class="container">
+  <div>{{producto.nombre}}</div>
 
-<div>
-    {{producto.color}}
-</div>
+  <div>{{producto.descripcion}}</div>
 
-<div>
-    <img src="{{ media_url  }}{{producto.imagen.url}}" alt="">
-</div>
+  <div>
+    <img src="{{ media_url  }}{{producto.imagen.url}}" alt="" />
+  </div>
 
-<div>
-    {{producto.precio}}
+  <div>$ {{producto.precio}}</div>
 </div>
-
+<div class="col d-flex justify-content-end">
+  {% for group in user.groups.all %}
+       {% if group.name == 'moderador' %}
+            <a href="/editar_producto/{{ producto.id }}" class="btn btn-warning">Editar</a>
+            <a href="/borrar_producto/{{ producto.id}}" class="btn btn-danger ms-3">Borrar</a>
+       {% endif %}
+  {% endfor %}
+   <a href="#" class="btn btn-success ms-3">Agregar al Carrito</a>
+</div>
 
 {% endblock %}

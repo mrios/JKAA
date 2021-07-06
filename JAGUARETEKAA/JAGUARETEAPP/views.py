@@ -4,12 +4,19 @@ from django.http.response import HttpResponse
 from JAGUARETEAPP.models import Producto
 from django.forms import modelform_factory
 from JAGUARETEAPP.forms import ProductoForm
+from django.contrib.auth.models import User
 # Create your views here.
 
 
+
+
 def home(request):
-    productos=Producto.objects.all()
-    return render(request, "web/home.html", {"productos": productos})
+    primerosproductos = Producto.objects.all()[:3]
+    ultimosproductos = Producto.objects.all()[3:10]
+
+    return render(request, "web/home.html", {
+        'primeros_productos': primerosproductos,
+        'ultimos_productos': ultimosproductos})
 
 def buscador(request):
     return render(request, 'web/buscador.html')
@@ -33,9 +40,10 @@ def detalleProducto(request, id):
 
 def agregarProducto(request):
     if request.method=="POST":
-        producto_form = ProductoForm(request.POST, request.FILES, instance=Producto(imagen=request.FILES['imagen']))
+        user = User.objects.get(username=request.user)
+        producto_form = ProductoForm(request.POST, request.FILES, instance=Producto(imagen=request.FILES['imagen'], moderador=user,))
         
-        
+         
         if producto_form.is_valid():
             producto_form.save()
             return redirect("home")
@@ -48,7 +56,8 @@ def agregarProducto(request):
 def editar_producto(request, producto_id):
     producto_editado = get_object_or_404(Producto, id=producto_id)
     if request.method == "POST":
-        
+        user = User.objects.get(username=request.user)
+        producto_editado.moderador = user
         
         form = ProductoForm(data=request.POST, files=request.FILES, instance=producto_editado)
         if form.is_valid():
@@ -70,3 +79,10 @@ def producto_borrado(request, producto_id):
     return redirect("home")
 
 
+def acerca_de(request):
+    
+    return render(request, "web/acerca_de.html")
+    
+def contacto(request):
+    
+    return render(request, "web/contacto.html")

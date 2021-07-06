@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.base import Model
 from django.db.models.fields.related import ManyToManyField
+from django.contrib.auth.models import User
 #from django.contrib.auth.models import Producto
 
 
@@ -26,9 +27,10 @@ class Producto(models.Model):
     precio=models.DecimalField(decimal_places=2, max_digits=10 )
     imagen=models.ImageField(upload_to='imagenes/')
     categoria=models.ForeignKey(Categoria, on_delete=models.SET_NULL, blank=True, null= True)
+    moderador=models.ForeignKey(User, on_delete=models.CASCADE, null= True)
 
     def __str__(self):
-        return f"Zapatillas {self.marca}, color {self.color}, precio {self.precio}, id {self.id}"
+        return f"Zapatillas {self.nombre}, color {self.color}, precio {self.precio}, id {self.id}"
 
 
 

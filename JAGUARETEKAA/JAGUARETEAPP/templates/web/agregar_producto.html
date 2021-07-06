@@ -1,13 +1,15 @@
-{% extends "web/layout.html" %}
+{% extends "web/layout.html" %} {% block main %}
 
-{% block main %}
-
-<form method="POST" enctype="multipart/form-data" action="{% url 'agregarproducto' %}">
-    {% csrf_token %}
-    {{agregar_prod}}
+<div class="container">
+  <form
+    method="POST"
+    enctype="multipart/form-data"
+    action="{% url 'agregarproducto' %}"
+    class="text-white"
+  >
+    {% csrf_token %} {{agregar_prod}}
     <button type="submit">Agregar</button>
-    
-</form>
+  </form>
+</div>
 
 {% endblock %}
-

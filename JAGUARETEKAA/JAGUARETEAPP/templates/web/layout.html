@@ -1,88 +1,142 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <link rel="stylesheet" href="{% static 'jaguarete/estilo.css' %}">
-    
+  <head>
+    <link rel="stylesheet" href="{% static 'jaguarete/estilo.css' %}" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jaguarete Kaa</title>
-</head>
-<body>
-    <header>
+  </head>
+  <body class="bg-dark text-white">
+    <div class="container">
+      <header class="p-3 bg-dark ">
         <div class="container">
-            <div class="row">
-                <div id="logo" class="col-3">
-                    <a href="link logo"><img src="https://static3.bigstockphoto.com/5/0/4/large2/405834245.jpg" alt=""></a>
-                </div>
-                <div id="nombre" class="col container pr-5 ">
-                    <h1 id="titulo" class= "w-75 mx-auto d-block">JAGUARETE KAA S.A.</h1>
-                </div>
-                <div id="registro"class="col-3" >
-                    <div   role="group" aria-label="Basic outlined example">
-                        
-                        <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary">Login</button></a>
-                        <a href="{% url 'REGISTRO:registro' %}">reg</a>
-                        <button type="button" class="btn btn-outline-primary" >Registro</button>
-                        
-                        <button type="button" class="btn btn-outline-primary">Carrito</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Home</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div
+            class="
+              d-flex
+              flex-wrap
+              align-items-center
+              justify-content-center justify-content-lg-start
+            "
+          >
+            <a
+              href="/"
+              class="
+                d-flex
+                align-items-center
+                mb-2 mb-lg-0
+                text-white text-decoration-none
+              "
+            >
+              <svg
+                class="bi me-2"
+                width="40"
+                height="32"
+                role="img"
+                aria-label="Bootstrap"
+              >
+                <use xlink:href="#bootstrap"></use>
+              </svg>
+            </a>
+
+            <ul
+              class="
+                nav
+                col-12 col-lg-auto
+                me-lg-auto
+                mb-2
+                justify-content-center
+                mb-md-0
+              "
+            >
+              <li>
+                <a href="{% url 'home' %}" class="nav-link px-2 text-secondary"
+                  >JAGUARETE KAA S.A.</a
+                >
+              </li>
               <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a
+                  class="nav-link px-2 text-white dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Categorias
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Marca</a></li>
-                  <li><a class="dropdown-item" href="#">Color</a></li>
-                  
+                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/buscar/?producto_buscado=nike">Nike</a></li>
+                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/buscar/?producto_buscado=adidas">Adidas</a></li>
+                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/buscar/?producto_buscado=puma">Puma</a></li>
                 </ul>
               </li>
-              
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Acerca de</a>
+                <a class="nav-link px-2 text-white" aria-current="page" href="{% url 'acerca_de' %}"
+                  >Acerca de</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Contacto</a>
+                <a class="nav-link px-2 text-white" href="{% url 'contacto' %}">Contacto</a>
               </li>
-             
+
               <li class="nav-item">
-                <a class="nav-link active" href="agregarproducto/" tabindex="-1" aria-disabled="true">Nuevo Producto</a>
+                <a
+                  class="nav-link px-2 text-white"
+                  href="{% url 'agregarproducto' %}"
+                  tabindex="-1"
+                  aria-disabled="true"
+                  >Nuevo Producto</a
+                >
               </li>
             </ul>
+
+            {% include "web/buscador.html" %}
            
+            <div>
+              <ul class="navbar-nav me-auto d-flex flex-row">   
+                {% if request.user.is_authenticated %}
+                <li class="nav-item me-5">
+                  <a class="nav-link" href="{% url 'logout'%}?next={{ home }}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item me-5">
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item me-5">
+                  <a class="nav-link" href="{% url 'REGISTRO:registro' %}">Registro</a>
+                </li>
+                {% endif %}
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="#">Carrito<i class="fas fa-shopping-cart"></i></a>
+                </li>
+              </ul>
+            </div>
           </div>
-          {% include "web/buscador.html" %}
         </div>
-      </nav>
-</body>
+      </header>
+    </div>
+  </body>
 
-{% block main %}
-{% endblock %}
+  {% block main %} {% endblock %}
 
-<footer class="footer">
+  <footer class="footer">
     <p>Jaguarete Kaa S.A.</p>
     <p>copy right - todos los derechos reservados</p>
     <p>Desarrollador Marcos Salas</p>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </footer>
 </html>
