@@ -1,7 +1,7 @@
 {% extends "web/layout.html" %} 
 {% block main %}
 
-<div class="container">
+<div class="container text-white ">
   <div>{{producto.nombre}}</div>
 
   <div>{{producto.descripcion}}</div>
@@ -17,9 +17,18 @@
        {% if group.name == 'moderador' %}
             <a href="/editar_producto/{{ producto.id }}" class="btn btn-warning">Editar</a>
             <a href="/borrar_producto/{{ producto.id}}" class="btn btn-danger ms-3">Borrar</a>
+            
        {% endif %}
   {% endfor %}
-   <a href="#" class="btn btn-success ms-3">Agregar al Carrito</a>
+  {% if not perms.produtos.add_producto %} 
+  <div>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'CARRITO:agregar' producto.id %}" class="btn btn-success ms-3">Agregar al Carrito</a>
+    {% else %}
+    <a href="{% url 'REGISTRO:registro' %}" class="btn btn-success ms-3">Agregar al Carrito</a>
+  </div>
+    {% endif %}
+  {% endif %}
 </div>
 
 {% endblock %}

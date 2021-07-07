@@ -2,8 +2,8 @@
 {% load static %}
 
     {% block busqueda %}
-    <form class="d-flex" action="/buscar/" method="GET">
-        <input class="form-control me-2" type="text" name="producto_buscado" placeholder="Buscar" aria-label="Search">
+    <form class="d-flex me-5 ms-2" action="/buscar/" method="GET">
+        <input class="form-control me-1" type="text" name="producto_buscado" placeholder="Buscar" aria-label="Search">
         <input class="btn btn-outline-success" type="submit" value="Buscar">
     </form>
     {% endblock %}

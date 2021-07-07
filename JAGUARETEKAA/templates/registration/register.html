@@ -3,17 +3,17 @@
 {% block main %}
 
 <div class="text-center my-5 pb-5">
-    <div class="container-sm col-4">
+    <div class="container-sm col-3">
   
-    <h3 class="card-header">Formulario de Registro</h3>
+    <h3 class="card-header text-white">Formulario de Registro</h3>
     <form method="post">
         {% csrf_token %}
         {% for campo in form %}
-            <div class="row mt-3 d-flex justify-content-between me-2">
-                <div class="col-auto ms-2 ">
-                <label for="username">{{ campo.label_tag }}</label>
+            <div class="row mt-2 ms-2 text-white ">
+                <div class="col-auto ms-4 ">
+                    <label for="username">{{ campo.label_tag }}</label>
                 </div>
-                <div class="col-auto ms-5">
+                <div class="col-auto ms-3">
                     {{ campo }}
                 </div>
                 {% for error in campo.errors %}

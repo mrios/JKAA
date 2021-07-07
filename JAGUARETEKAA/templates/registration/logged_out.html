@@ -1,5 +1,16 @@
 {% extends "JAGUARETEAPP/templates/web/layout.html" %}
 {% block main %}
-<p>Has sido desconectado.</p>
-<a href="{% url 'login'%}">Click aqui para volver a acceder.</a>
+
+<div class="card container mt-5 ">
+    <div class="card-header text-center">
+        <h5 class="card-title ">Has sido desconectado</h5>
+    </div>
+    <div class="card-body">    
+        <p class="card-text text-center">
+            <a href="{% url 'login'%}">Click aqui para volver a acceder.</a>
+        </p>
+  
+    </div>
+</div>
+
 {% endblock %}

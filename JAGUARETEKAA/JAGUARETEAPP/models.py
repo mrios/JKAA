@@ -23,7 +23,6 @@ class Categoria(models.Model):
 
 class Producto(models.Model):
     nombre=models.CharField(max_length=30)
-    color=models.CharField(max_length=30)
     descripcion=models.CharField(max_length=140, null=True)
     precio=models.DecimalField(decimal_places=2, max_digits=10 )
     imagen=models.ImageField(upload_to='imagenes/')
@@ -33,7 +32,7 @@ class Producto(models.Model):
     
     
     def __str__(self):
-        return f"Zapatillas {self.nombre}, color {self.color}, precio {self.precio}, id {self.id}"
+        return f"Zapatillas {self.nombre}, precio {self.precio}, id {self.id}"
 
 
 

@@ -5,7 +5,7 @@ from django import forms
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ('categoria', 'nombre', 'color', 'descripcion', 'precio', 'imagen', 'fecha')
+        fields = ('categoria', 'nombre', 'descripcion', 'precio', 'imagen', 'fecha')
         widgets = {
             'categoria': forms.Select(
                 attrs={
@@ -21,12 +21,6 @@ class ProductoForm(forms.ModelForm):
             'fecha': forms.SelectDateWidget(
                 attrs={
                     "class": "visually-hidden",
-                }
-            ),
-            'color':forms.TextInput(
-                attrs={
-                    "class": "form-control",
-                    
                 }
             ),
             'descripcion': forms.Textarea(

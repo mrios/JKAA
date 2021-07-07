@@ -13,7 +13,7 @@
                 <div class="mb-3">
                     <label for="imagen_input"  class="row ms-1 mb-3">IMAGEN</label>
                     <div class="">
-                        <img src="{{ product.imagen.url }}" class="text-center" width="120" height="120" alt="{{ producto.nombre }}"><br> 
+                        <img src="{{ product.imagen.url }}" class="text-center" width="120" height="120" alt="{{ product.nombre }}"><br> 
                         {{ form.imagen }} {{ form.imagen.errors }}
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-auto">
                         <div class="btn-group col-auto ">
-                            <a href="/borrar_producto/{{ producto.id}}" class="btn btn-danger ms-5 me-3 p-3">Borrar</a>  
+                            <a href="/borrar_producto/{{ product.id}}" class="btn btn-danger ms-5 me-3 p-3">Borrar</a>  
                             <input type="submit" class="btn btn-warning ms-4 me-0 p-3" value="Editar">
                         </div>
                     </div>

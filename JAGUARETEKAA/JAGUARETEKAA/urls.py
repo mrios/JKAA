@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include("JAGUARETEAPP.urls")),
     path('registro/', include("REGISTRO.urls")),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('carro/', include('CARRITO.urls')),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
  

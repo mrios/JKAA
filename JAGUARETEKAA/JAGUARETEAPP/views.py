@@ -87,3 +87,8 @@ def acerca_de(request):
 def contacto(request):
     
     return render(request, "web/contacto.html")
+
+
+def carrito(request):
+    
+    return render(request, "web/carrito.html")

@@ -1,0 +1,56 @@
+{% extends "web/layout.html" %} 
+{% block main %}
+
+<table class="table table-bordered" style="color: aliceblue;">
+    <thead>
+        <tr>
+            <th colspan="3" class="text-center">
+                Carrito
+
+            </th>
+        </tr>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Suma</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if request.session.carrito.items %}
+            {% for key, value in request.session.carrito.items %}
+                <tr class="text-center">
+                    <td>{{value.nombre}}</td>
+                    <td>{{value.cantidad}}</td>
+                    <td>
+                        <a href="{% url 'CARRITO:agregar' value.producto_id %}" class="btn btn-sm btn-success">+</a>
+                        <a href="{% url 'CARRITO:quitar' value.producto_id %}" class="btn btn-sm btn-success">-</a>
+
+                        $ {{value.precio}}
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="3" >
+                    <div class="alert alert-danger text-center"> 
+                        Sin productos
+                    </div>
+                </td>
+            </tr>
+        {% endif %}
+    </tbody>
+    <tfoot>
+        <tr>
+            
+            <td colspan="3">
+                Total: {{importe_total_carrito}}
+
+            </td>
+            
+        </tr>
+    </tfoot>
+</table>
+
+{% endblock %}
