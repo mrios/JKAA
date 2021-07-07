@@ -1,6 +1,6 @@
 {% extends "web/layout.html" %} 
 {% block main %}
-
+<div class="text-center mb-5 text-white">
     <p>Resultado de la busqueda: {{query}}</p>
     {% if articulo %}
         <p>Productos encontrados: {{articulo|length}} productos </p>
@@ -20,4 +20,5 @@
     {% else %} 
         <p>No se encontro ningun producto</p>
     {% endif %}
+</div>
 {% endblock %}

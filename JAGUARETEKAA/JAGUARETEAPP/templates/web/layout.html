@@ -10,14 +10,25 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
+    <link
+      href="{% static 'fontawesome_free/css/all.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jaguarete Kaa</title>
   </head>
-  <body class="bg-dark text-white">
+  <body class="bg-dark">
     <div class="container">
-      <header class="p-3 bg-dark ">
+      <header class="p-3 bg-dark mb-4 border-bottom border-secondary">
         <div class="container">
           <div
             class="
@@ -36,15 +47,15 @@
                 text-white text-decoration-none
               "
             >
-              <svg
-                class="bi me-2"
-                width="40"
-                height="32"
-                role="img"
-                aria-label="Bootstrap"
-              >
-                <use xlink:href="#bootstrap"></use>
-              </svg>
+              <div id="logo">
+                <a href="{% url 'home' %}" class="mx-2"
+                  ><img
+                    width="80"
+                    height="80"
+                    src="https://images.vexels.com/media/users/3/223243/isolated/lists/8e29aeebd260297845c3057f58a1289c-leopard-argentina-country-badge.png"
+                    alt=""
+                /></a>
+              </div>
             </a>
 
             <ul
@@ -74,20 +85,45 @@
                   Categorias
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/buscar/?producto_buscado=nike">Nike</a></li>
-                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/buscar/?producto_buscado=adidas">Adidas</a></li>
-                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/buscar/?producto_buscado=puma">Puma</a></li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="http://127.0.0.1:8000/buscar/?producto_buscado=nike"
+                      >Nike</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="http://127.0.0.1:8000/buscar/?producto_buscado=adidas"
+                      >Adidas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="http://127.0.0.1:8000/buscar/?producto_buscado=puma"
+                      >Puma</a
+                    >
+                  </li>
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link px-2 text-white" aria-current="page" href="{% url 'acerca_de' %}"
+                <a
+                  class="nav-link px-2 text-white"
+                  aria-current="page"
+                  href="{% url 'acerca_de' %}"
                   >Acerca de</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link px-2 text-white" href="{% url 'contacto' %}">Contacto</a>
+                <a class="nav-link px-2 text-white" href="{% url 'contacto' %}"
+                  >Contacto</a
+                >
               </li>
 
+              {% for group in user.groups.all %}
+              {% if group.name == 'moderador' %}
               <li class="nav-item">
                 <a
                   class="nav-link px-2 text-white"
@@ -97,46 +133,55 @@
                   >Nuevo Producto</a
                 >
               </li>
+              {% endif %}
+              {% endfor %}
             </ul>
 
             {% include "web/buscador.html" %}
-           
+
             <div>
-              <ul class="navbar-nav me-auto d-flex flex-row">   
+              <ul class="navbar-nav me-auto d-flex flex-row">
                 {% if request.user.is_authenticated %}
                 <li class="nav-item me-5">
-                  <a class="nav-link" href="{% url 'logout'%}?next={{ home }}">Logout</a>
+                  <a class="nav-link" href="{% url 'logout'%}?next={{ home }}"
+                    >Logout</a
+                  >
+                </li>
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="#"
+                    >Carrito<i class="fas fa-shopping-cart"></i
+                  ></a>
                 </li>
                 {% else %}
                 <li class="nav-item me-5">
                   <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item me-5">
-                  <a class="nav-link" href="{% url 'REGISTRO:registro' %}">Registro</a>
+                  <a class="nav-link" href="{% url 'REGISTRO:registro' %}"
+                    >Registro</a
+                  >
                 </li>
                 {% endif %}
-                <li class="nav-item me-3">
-                  <a class="nav-link" href="#">Carrito<i class="fas fa-shopping-cart"></i></a>
-                </li>
               </ul>
             </div>
           </div>
         </div>
       </header>
+      {% block main %} {% endblock %}
+      <footer class="footer text-white">
+        <p>Jaguarete Kaa S.A.</p>
+        <p>
+          <i class="fa-solid fa-copyright text-white"></i> - Todos los derechos
+          reservados
+        </p>
+        <p>Desarrollador Marcos Salas</p>
+
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"
+        ></script>
+      </footer>
     </div>
   </body>
-
-  {% block main %} {% endblock %}
-
-  <footer class="footer">
-    <p>Jaguarete Kaa S.A.</p>
-    <p>copy right - todos los derechos reservados</p>
-    <p>Desarrollador Marcos Salas</p>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-  </footer>
 </html>

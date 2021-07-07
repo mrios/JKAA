@@ -1,6 +1,6 @@
 {% extends "web/layout.html" %} {% block main %}
 
-<div class="container">
+<div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     {% for producto in primeros_productos %}
     <div class="col">
@@ -17,7 +17,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <a href="/detalle_producto/{{producto.id}}">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
+                <button type="button" class="btn btn-sm btn-primary">
                   Ver Detalle
                 </button>
               </a>
@@ -29,19 +29,26 @@
     {% endfor %}
   </div>
 </div>
-<div class="container-fluid mb-5 abajo">
-  <h2 class="text-center my-3">MÁS PRODUCTOS</h2>      
-      {% for productoU in ultimos_productos %}
-          <p>
-              <a href="/detalle_producto/{{productoU.id}}" class="link-light"><b>{{ productoU.nombre }}</b></a> 
-              <a href="/detalle_producto/{{productoU.id}}">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  Ver Detalle
-                </button>
-              </a>
-          </p>
-          <br>
-      {% endfor %}     
+<div class="container-sm py-5">
+  <h2 class="text-center mb-5 text-white">Más productos</h2>
+  <div class="list-group">
+    {% for productoU in ultimos_productos %}
+    <a
+      href="/detalle_producto/{{productoU.id}}"
+      class="list-group-item list-group-item-action"
+    >
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ productoU.nombre }}</h5>
+        <button type="button" class="btn btn-sm btn-outline-primary">
+          Ver Detalle
+        </button>
+      </div>
+      <p>
+        <small class="text-left">{{ productoU.descripcion }}</small>
+      </p>
+    </a>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}

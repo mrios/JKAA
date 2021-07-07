@@ -1,19 +1,19 @@
-{% extends "layout.html" %}
+{% extends "web/layout.html" %}
 {% block main %}
 <div class="container pb-5">
     <h3 class="text-center mb-3">Editar Producto</h3>
-    <form enctype="multipart/form-data" action="{% url 'productos:editar_producto' producto.id %}" method="post" class="fomulario">
+    <form enctype="multipart/form-data" action="{% url 'editar_producto' product.id %}" method="post" class="formulario">
         {% csrf_token %}
         <div class="mb-3 form-floating">
-            {{ form.titulo }} {{ form.titulo.errors }}
-            <label for="titulo">Título</label>
+            {{ form.nombre }} {{ form.nombre.errors }}
+            <label for="nombre">Nombre</label>
         </div>
         <div class="bloque row pb-5">
             <div class="imagen col">
                 <div class="mb-3">
                     <label for="imagen_input"  class="row ms-1 mb-3">IMAGEN</label>
                     <div class="">
-                        <img src="{{ producto.imagen.url }}" class="text-center" width="120" height="120" alt="{{ producto.titulo }}"><br> 
+                        <img src="{{ product.imagen.url }}" class="text-center" width="120" height="120" alt="{{ producto.nombre }}"><br> 
                         {{ form.imagen }} {{ form.imagen.errors }}
                     </div>
                 </div>
@@ -24,8 +24,8 @@
                     <label for="categoria">Categoría</label>
                 </div>
                 <div class="visually-hidden">
-                   {{ form.fecha }} {{ form.fecha.errors }}
-                </div>
+                    {{ form.fecha }} {{ form.fecha.errors }}
+                 </div>
     
                 <div class="mb-3 form-floating">
                     {{ form.descripcion }} {{ form.descripcion.errors }}
@@ -38,8 +38,8 @@
                     </div>
                     <div class="col-auto">
                         <div class="btn-group col-auto ">
-                            <a href="/borrar_producto/{{ producto.id}}" class="btn btn-danger ms-5 me-3 p-3">BORRAR</a>  
-                            <input type="submit" class="btn btn-warning ms-4 me-0 p-3" value="EDITAR">
+                            <a href="/borrar_producto/{{ producto.id}}" class="btn btn-danger ms-5 me-3 p-3">Borrar</a>  
+                            <input type="submit" class="btn btn-warning ms-4 me-0 p-3" value="Editar">
                         </div>
                     </div>
                 </div>

@@ -58,7 +58,6 @@ def editar_producto(request, producto_id):
     if request.method == "POST":
         user = User.objects.get(username=request.user)
         producto_editado.moderador = user
-        
         form = ProductoForm(data=request.POST, files=request.FILES, instance=producto_editado)
         if form.is_valid():
             form.save()
@@ -67,11 +66,13 @@ def editar_producto(request, producto_id):
         form = ProductoForm(instance = producto_editado)
         
         context = {
-           
-            "producto": producto_editado,
-            "form": form
-        }
+            "product": producto_editado,
+            "form": form}
         return render(request, 'web/producto_editado.html', context)
+
+
+
+        
 
 def producto_borrado(request, producto_id):
     borrado = get_object_or_404(Producto, id=producto_id)

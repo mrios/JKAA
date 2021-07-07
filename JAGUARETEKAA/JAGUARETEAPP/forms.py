@@ -5,7 +5,7 @@ from django import forms
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ('categoria', 'nombre', 'color', 'descripcion', 'precio', 'imagen')
+        fields = ('categoria', 'nombre', 'color', 'descripcion', 'precio', 'imagen', 'fecha')
         widgets = {
             'categoria': forms.Select(
                 attrs={
@@ -16,6 +16,11 @@ class ProductoForm(forms.ModelForm):
             'nombre': forms.TextInput(
                 attrs={
                     "class": "form-control",
+                }
+            ),
+            'fecha': forms.SelectDateWidget(
+                attrs={
+                    "class": "visually-hidden",
                 }
             ),
             'color':forms.TextInput(
@@ -37,4 +42,5 @@ class ProductoForm(forms.ModelForm):
                 }
             ),
             'imagen': forms.ClearableFileInput(),
+    
         }
