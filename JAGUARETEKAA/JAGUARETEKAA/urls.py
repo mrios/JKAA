@@ -22,7 +22,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'productos', views.ProductoViewSet)
-router.register(r'productos-nike', views.ProductoNike.as_view())
+router.register(r'productos-nike', views.ProductoNike)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

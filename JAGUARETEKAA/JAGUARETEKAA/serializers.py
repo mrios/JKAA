@@ -8,7 +8,7 @@ class ProductoSerializer(serializers.HyperlinkedModelSerializer):
         model = Producto
         fields = ('nombre', 'descripcion')
 
-class ProductoSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Producto
-        fields = "__all__"
+# class ProductoSerializer(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model = Producto
+#         fields = "__all__"
